@@ -330,7 +330,8 @@ In summary, :serializer is used for specifying a custom serializer for a single 
     Make sure to use the appropriate option depending on whether you are rendering a single object or a collection of objects .
 
 
-
+Its worth noting that the specific syntax used may depend on the version of Active Model Serializers youre using,
+so its a good practice to consult the gems documentation for the version you have installed.
 
 
 ---------------------------------------------
