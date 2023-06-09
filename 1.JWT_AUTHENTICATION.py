@@ -130,11 +130,85 @@ end
 
 
 
+EXPLANANTION OF THE CODE ABOVE
+******************************************************************************************************************************
 
 
 
+Sure! Here's a step-by-step explanation of each code snippet you provided:
+
+AuthenticationController:
+
+This controller is responsible for handling user authentication.
+The create action is used for user login.
+It finds a Memeber (typo: should be Member?) by the provided email.
+If the member is found and the password is authenticated, it generates a token using AuthenticationTokenService.encode and returns
+it along with the member data in the JSON response.
+If the member is not found or the password authentication fails, it returns an error message in the JSON response
+with the status :unauthorized.
+        
+        
+        
+        
+Book2sController:
+
+This controller is used for managing books.
+The index action retrieves all books from the database, including their associated authors,
+and returns them in the JSON response.
+The create action creates a new book using the parameters passed in book_params. If the book is saved successfully,
+it returns the created book in the JSON response with the status :created.
+        Otherwise, it returns the errors in the JSON response with the status :unprocessable_entity.
+The destroy action finds a book by the provided ID and deletes it. If the book is not found, 
+it raises ActiveRecord::RecordNotFound, which is rescued by the not_destroyed method.
+The not_destroyed method is a handler for the ActiveRecord::RecordNotDestroyed exception.
+                It renders an error message in the JSON response with the status :not_found.
+                        
+                        
+                        
+MemebersController:
+
+This controller is responsible for member (user) sign-up.
+The create action creates a new member based on the parameters passed in memeber_params.
+If the member is saved successfully, it generates a token using AuthenticationTokenService.encode and
+returns it along with the member data in the JSON response. If there are validation errors,
+it returns the errors in the JSON response with the status :unprocessable_entity.
+        
+        
+        
+        
+        
+ApplicationController:
+
+This is the base controller that other controllers inherit from.
+It includes ActionController::HttpAuthentication::Token to provide token-based authentication functionality.
+The before_action :authenticate_user is called before every action in child controllers to enforce user authentication.
+The authenticate_user method is responsible for authenticating the user using the provided token.
+It attempts to extract the token from the request using token_and_options(request) and then 
+decodes the token using AuthenticationTokenService.decode.
+If the token is valid and corresponds to an existing member, the authentication is considered successful.
+If the token is invalid or the member is not found, it raises ActiveRecord::RecordNotFound, 
+                which is rescued by rendering an error message in the JSON response with the status :unauthorized.
+                        
+                        
+                        
+AuthenticationTokenService:
+
+This service class handles the encoding and decoding of JWT tokens.
+It uses the HMAC-SHA256 algorithm (HS256) and a secret key (HMAC_SECRET) to encode and decode the tokens.
+The encode method takes a user_id and generates a token with an expiration time of 1 minute from the current time.
+The decode method takes a token and decodes it, returning the user ID extracted from the decoded token.
 
 
+
+Routes:
+
+The routes file configures the available routes for the API.
+It defines a namespace api/v1 and sets up routes for the MemebersController (create action) and
+the AuthenticationController (create action for login).
+The login route is mapped to the create action in the AuthenticationController.
+These code snippets together provide a basic implementation of user authentication using JWT tokens
+in a Rails API application. The user can sign up, log in, and access protected endpoints by providing
+the generated token in the request headers.
 
 
 
