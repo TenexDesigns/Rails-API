@@ -32,7 +32,7 @@ production:
 Replace your_username and your_password with your PostgreSQL credentials.
 Make sure the database names match your application's naming convention.
 
-Install the pg Gem: Add the pg gem to your Gemfile and run bundle install to install the PostgreSQL adapter for Rails:
+Install the pg Gem: Add the pg gem to your Gemfile and run 'bundle install' to install the PostgreSQL adapter for Rails:
 
 gem 'pg'
 Create the Databases: Run the following commands to create the development and test databases:
