@@ -23,7 +23,8 @@ Generate the API-only controller:
 
 Generate the controller for the Contact model with the following command:
 
-rails generate controller /v1/contacts --api
+rails generate controller api/v1/contacts --api
+
 This will create a controller file named contacts_controller.rb inside the app/controllers/api/v1 directory.
 
 Define the actions in the controller:
