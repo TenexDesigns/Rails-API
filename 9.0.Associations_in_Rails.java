@@ -24,7 +24,7 @@ The corresponding database tables should have foreign keys (user_id in the profi
 
 One-to-Many Association:
 In a one-to-many association, one record in one model can be associated with multiple records in another model. 
-Here's an example:
+Heres an example:
 
 
 # app/models/user.rb
@@ -134,48 +134,3 @@ not be updated with the foreign key information.
 
 Remember to create and run migrations whenever you make changes to your models, including adding or modifying associations.
 This ensures that your database schema accurately reflects the structure of your models and their associations.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-..
